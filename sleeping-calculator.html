@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free sleep calculator tool to determine your ideal bedtime or wake-up time based on sleep cycles. Improve your sleep quality with our calculator.">
+    <meta name="keywords" content="sleep calculator, bedtime calculator, wake up time, sleep cycles, REM sleep, sleep quality">
+    <meta name="author" content="Sleep Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Sleep Calculator - Find Your Ideal Bedtime">
+    <meta property="og:description" content="Calculate your perfect bedtime or wake-up time based on natural sleep cycles for better rest.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yoursite.com/sleep-calculator">
+    
+    <title>Sleep Calculator - Find Your Ideal Bedtime or Wake-Up Time</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.yoursite.com/sleep-calculator">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Sleep Calculator",
+      "description": "Tool to calculate ideal bedtime or wake-up time based on sleep cycles",
+      "url": "https://www.yoursite.com/sleep-calculator",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            color: #555;
+        }
+        
+        .calculator-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .calculator {
+            flex: 1 1 600px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+        }
+        
+        .calculator h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .results {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            display: none;
+        }
+        
+        .results h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .result-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .result-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-section {
+            flex: 1 1 400px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+        }
+        
+        .info-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .info-section h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .ad-container {
+            margin: 2rem 0;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .ad-label {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.75rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .calculator-container {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+            }
+            
+            .footer-links a {
+                margin: 0.5rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .calculator, .info-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Sleep Calculator</div>
+            <nav>
+                <ul>
+                    <li><a href="#calculator">Calculator</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#tips">Sleep Tips</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <h1>Sleep Calculator</h1>
+            <p>Discover your ideal bedtime or wake-up time based on natural sleep cycles. Our calculator helps you wake up refreshed by aligning with your body's natural rhythms.</p>
+        </section>
+        
+        <!-- Top Ad Banner -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Replace with your AdSense code -->
+            <div id="top-ad">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"
+                     crossorigin="anonymous"></script>
+                <!-- Sleep Calculator Top Banner -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                     data-ad-slot="YOUR_AD_SLOT_ID"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        
+        <div class="calculator-container">
+            <section id="calculator" class="calculator">
+                <h2>Sleep Time Calculator</h2>
+                
+                <div class="form-group">
+                    <label for="calculation-type">I want to calculate:</label>
+                    <select id="calculation-type" class="form-control">
+                        <option value="wake-up">My wake-up time</option>
+                        <option value="bedtime">My bedtime</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="bedtime-group">
+                    <label for="bedtime">When do you want to go to bed?</label>
+                    <input type="time" id="bedtime" class="form-control" value="22:00">
+                </div>
+                
+                <div class="form-group" id="wakeup-group" style="display: none;">
+                    <label for="wakeup">When do you want to wake up?</label>
+                    <input type="time" id="wakeup" class="form-control" value="06:30">
+                </div>
+                
+                <div class="form-group">
+                    <label for="fall-asleep-time">How long does it typically take you to fall asleep? (minutes)</label>
+                    <input type="number" id="fall-asleep-time" class="form-control" min="0" max="120" value="15">
+                </div>
+                
+                <button id="calculate-btn" class="btn btn-block">Calculate</button>
+                
+                <div id="results" class="results">
+                    <h3>Your Results</h3>
+                    <div id="result-content"></div>
+                </div>
+            </section>
+            
+            <section class="info-section">
+                <h2>About Sleep Cycles</h2>
+                <p>Sleep occurs in cycles of about 90 minutes each. Waking up at the end of a sleep cycle helps you feel more refreshed than waking up in the middle of deep sleep.</p>
+                
+                <h3>Why It Matters</h3>
+                <p>Each sleep cycle consists of four stages: three stages of non-REM sleep and one REM (rapid eye movement) sleep stage. Completing full cycles is essential for:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>Memory consolidation</li>
+                    <li>Physical restoration</li>
+                    <li>Emotional regulation</li>
+                    <li>Cognitive function</li>
+                </ul>
+                
+                <h3>Sleep Tips</h3>
+                <p>For better sleep quality:</p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Maintain a consistent sleep schedule</li>
+                    <li>Create a relaxing bedtime routine</li>
+                    <li>Keep your bedroom cool and dark</li>
+                    <li>Avoid screens before bedtime</li>
+                    <li>Limit caffeine and alcohol intake</li>
+                </ul>
+                
+                <!-- Sidebar Ad -->
+                <div class="ad-container" style="margin-top: 2rem;">
+                    <div class="ad-label">Advertisement</div>
+                    <!-- Replace with your AdSense code -->
+                    <div id="sidebar-ad">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"
+                             crossorigin="anonymous"></script>
+                        <!-- Sleep Calculator Sidebar -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                             data-ad-slot="YOUR_AD_SLOT_ID"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Bottom Ad Banner -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Replace with your AdSense code -->
+            <div id="bottom-ad">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"
+                     crossorigin="anonymous"></script>
+                <!-- Sleep Calculator Bottom Banner -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                     data-ad-slot="YOUR_AD_SLOT_ID"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">Sleep Calculator</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About</a>
+            </div>
+            <div class="copyright">
+                &copy; <span id="year"></span> Sleep Calculator Tools. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Toggle between bedtime and wake-up time inputs
+        document.getElementById('calculation-type').addEventListener('change', function() {
+            if (this.value === 'wake-up') {
+                document.getElementById('bedtime-group').style.display = 'none';
+                document.getElementById('wakeup-group').style.display = 'block';
+            } else {
+                document.getElementById('bedtime-group').style.display = 'block';
+                document.getElementById('wakeup-group').style.display = 'none';
+            }
+        });
+        
+        // Calculate sleep times
+        document.getElementById('calculate-btn').addEventListener('click', function() {
+            const calculationType = document.getElementById('calculation-type').value;
+            const fallAsleepTime = parseInt(document.getElementById('fall-asleep-time').value) || 0;
+            let resultsHTML = '';
+            
+            if (calculationType === 'wake-up') {
+                const wakeupTime = document.getElementById('wakeup').value;
+                const wakeupDate = new Date();
+                const [hours, minutes] = wakeupTime.split(':');
+                wakeupDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+                
+                resultsHTML = '<h4>If you want to wake up at ' + wakeupTime + ':</h4>';
+                resultsHTML += '<p>You should try to fall asleep at one of these times:</p><ul style="margin-left: 1.5rem;">';
+                
+                // Calculate 6 possible bedtimes (5-8 sleep cycles)
+                for (let cycles = 5; cycles <= 8; cycles++) {
+                    const bedtimeDate = new Date(wakeupDate.getTime() - (cycles * 90 + fallAsleepTime) * 60000);
+                    const bedtimeStr = bedtimeDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+                    resultsHTML += '<li>' + bedtimeStr + ' (' + cycles + ' sleep cycles, ' + (cycles * 90) + ' minutes of sleep)</li>';
+                }
+                
+                resultsHTML += '</ul>';
+                resultsHTML += '<p>This accounts for ' + fallAsleepTime + ' minutes to fall asleep.</p>';
+            } else {
+                const bedtime = document.getElementById('bedtime').value;
+                const bedtimeDate = new Date();
+                const [hours, minutes] = bedtime.split(':');
+                bedtimeDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+                
+                resultsHTML = '<h4>If you go to bed at ' + bedtime + ':</h4>';
+                resultsHTML += '<p>You should set your alarm for one of these times:</p><ul style="margin-left: 1.5rem;">';
+                
+                // Calculate 6 possible wake-up times (5-8 sleep cycles)
+                for (let cycles = 5; cycles <= 8; cycles++) {
+                    const wakeupDate = new Date(bedtimeDate.getTime() + (cycles * 90 + fallAsleepTime) * 60000);
+                    const wakeupStr = wakeupDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+                    resultsHTML += '<li>' + wakeupStr + ' (' + cycles + ' sleep cycles, ' + (cycles * 90) + ' minutes of sleep)</li>';
+                }
+                
+                resultsHTML += '</ul>';
+                resultsHTML += '<p>This accounts for ' + fallAsleepTime + ' minutes to fall asleep.</p>';
+            }
+            
+            document.getElementById('result-content').innerHTML = resultsHTML;
+            document.getElementById('results').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Initialize with correct input shown
+        document.getElementById('calculation-type').dispatchEvent(new Event('change'));
+    </script>
+</body>
+</html>
